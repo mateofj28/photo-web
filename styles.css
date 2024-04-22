@@ -1,0 +1,3 @@
+.link-with-line-through:focus {
+  text-decoration: line-through;
+}

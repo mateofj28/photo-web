@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foodfotografie-berlin</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .progress-bar {
+            width: 50%;
+            height: 20px;
+            background-color: #333;
+            position: relative;
+        }
+
+        .progress {
+            height: 100%;
+            background-color: #fff;
+            width: 0;
+            transition: width 1s;
+        }
+
+        .progress-label {
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            color: #fff;
+
+        }
+    </style>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body class="flex justify-center items-center h-screen" style="background-color: #333;">
+
+    
+        <div class="progress-bar" id="progressContent">
+            <div class="progress" id="progress"></div>
+            <div class="progress-label" id="progressLabel">0%</div>
+        </div>
+    
+    
+    
+
+    <div id="mainScreenContent" class="flex flex-col items-center justify-center h-screen" style="display: none;">
+        <h1 class="text-3xl text-center mb-20 mt-20">foodfotografie jan wischnewski</h1>
+        <ul class="flex gap-6 mb-12 items-center justify-center">
+            <li><a href="start.html" target="contenido" class="text-blue-500 hover:text-blue-100 link-with-line-through">START</a></li>
+            <li><a href="portfolio.html" target="contenido" class="text-blue-500 hover:text-blue-100 link-with-line-through">PORTFOLIO</a></li>
+            <li><a href="service.html" target="contenido" class="text-blue-500 hover:text-blue-100 link-with-line-through">SERVICE</a></li>
+            <li><a href="kunden.html" target="contenido" class="text-blue-500 hover:text-blue-100 link-with-line-through">KUNDEN</a></li>
+            <li><a href="kontakt.html" target="contenido" class="text-blue-500 hover:text-blue-100 link-with-line-through">KONTAKT & DATENSCHUTZ</a></li>
+            <li><a href="english_version.html" target="contenido" class="text-blue-500 hover:text-blue-100 link-with-line-through">ENGLISH VERSION</a></li>
+        </ul>
+        <iframe name="contenido" class="px-4 w-screen" src="start.html" style="height: 100vh; border: none;"></iframe>
+    </div>
+    
+
+
+    <script>
+        const progressBar = document.querySelector('.progress');
+        const progressLabel = document.getElementById('progressLabel');
+        let progress = 0;
+
+        function loadMainScreenContent() {
+            document.getElementById('progressContent').style.display = 'none';
+            document.body.style.backgroundColor = '#FFF';
+            document.getElementById('mainScreenContent').style.display = 'block';
+        }
+
+
+        function updateProgress() {
+            progress++;
+            progressBar.style.width = `${progress}%`;
+            progressLabel.textContent = `${progress}%`;
+
+            if (progress < 100) {
+                requestAnimationFrame(updateProgress);
+            } else {
+                setTimeout(loadMainScreenContent, 1000); // Cambio a pantalla en blanco después de un segundo
+            }
+        }
+
+        requestAnimationFrame(updateProgress);
+    </script>
+</body>
+
+</html>
